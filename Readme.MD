@@ -60,8 +60,8 @@ For the forum project you must use Docker. You can read about docker basics in t
 1. Be in the <b>FORUM</b> folder.
 
 2. Enter the command:
-
-        make run
+        
+        make build && make run
 
 3. Wait for the end of the process.
 
