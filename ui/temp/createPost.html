@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="/ui/static/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-container">
+        <header>
+            <div class="header_text">
+                <a href="/">
+                    FORUM
+                </a>
+            </div>
+            
+            {{ if .ThatUser.Username }}
+            <div class="header_text1">
+                {{.ThatUser.Username }}
+                <a  class="header_part" href="/post/create"><i class="fa fa-plus"></i></a>
+                <a class="header_part" href="/profile/{{.ThatUser.Username }}"><i class="fas fa-user-alt"></i></a>
+                <a class="header_part" href="/auth/logout"> <i class="fa fa-sign-out-alt"></i></a>
+            </div>
+            {{end}}
+
+
+
+        </header>
+        <div class="main-content">
+            {{ if .ThatUser.Username }}
+
+            <h2>Create Post</h2>
+            <form class="form_auth" action="/post/create" method="post">
+                TITLE
+                <input class="form_auth_input" type="text" name="title" maxlength="40">
+                DESCRIPTION
+                <textarea class="form_auth_input" name="description" id="description" cols="30" rows="8"
+                    maxlength="1000"></textarea>
+                <!-- <input class="form_auth_input" type="text" name="description"> -->
+                CATEGORY
+                <input class="form_auth_input" type="text" name="category" maxlength="80">
+                <input class="btn" type="submit" value="CREATE">
+            </form>
+            {{else}}
+            <div style="text-align:center;">
+                YOU CANNOT CREATE POST PLEASE SIGN IN
+                <br>
+                <a href="/">HOME</a>
+                <br>
+                <a href="/auth/signin">SIGN IN</a>
+            </div>
+            {{ end }}
+        </div>
+
+        <footer>            
+            FORUM by <a href="https://01.alem.school/git/Abdolla"> Abdolla</a>
+            and <a href="https://01.alem.school/git/Bagdaulet02"> Bagdaulet02</a>
+            and <a href="https://01.alem.school/git/qaharman11"> qaharman11</a>      
+
+    </footer>
+    </div>
+
+</body>
+
+</html>

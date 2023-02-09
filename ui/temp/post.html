@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="/ui/static/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-container">
+        <header>
+            <div class="header_text">
+                <a href="/">
+                    FORUM
+                </a>
+            </div>
+
+            {{ if .ThatUser.Username }}
+            <div class="header_text1">
+                {{.ThatUser.Username }}
+                <a  class="header_part" href="/post/create"><i class="fa fa-plus"></i></a>
+                <a class="header_part" href="/profile/{{.ThatUser.Username }}"><i class="fas fa-user-alt"></i></a>
+                <a class="header_part" href="/auth/logout"> <i class="fa fa-sign-out-alt"></i></a>
+            </div>
+            {{ else }}
+            <div class="header_text1">
+                <a class="header_part" href="/auth/signin"><i class="ri-login-box-line"></i></a>
+                <br>
+                <a class="header_part" href="/auth/signup"><i class="ri-user-add-line"></i></a>
+            </div>
+            {{ end }}
+
+        </header>
+
+
+        <div class="main-content">
+            <div class="post-info">
+                <a class="post__title" href="/post/?id={{.Post.Id}}">{{.Post.Title}}</a>
+                <a class="post__description">{{.Post.Description}}</a>
+                <a href="/profile/{{.Post.Creator}}">{{.Post.Creator}}</a>
+                <ul>
+                    {{range .Post.Category}}
+                    <li class="tags">{{.}}</li>
+                    {{end}}
+                </ul>
+                {{ if .ThatUser.Username }}
+                <div style="display: flex;width: 140px;margin-left: auto;">
+                    <form action="/post/like/?id={{.Post.Id}}" method="post">
+                        <button class="button" type="submit" name="like" value="Like"><i
+                                class="ri-thumb-up-line"></i></button>
+                        {{.Post.Likes}}
+                    </form>
+                    <form action="/post/dislike/?id={{.Post.Id}}" method="post">
+                        <button class="button" type="submit" name="dislike" value="Dislike"><i
+                                class="ri-thumb-down-line"></i></button>
+                        {{.Post.Dislikes}}
+                    </form>
+                </div>
+                {{else }}
+                <div style="display: flex;width: 140px;margin-left: auto;">
+                    <form action="/auth/signin" method="get">
+                        <button class="button" type="submit" name="like" value="Like"><i
+                                class="ri-thumb-up-line"></i></button>
+                        {{.Post.Likes}}
+                    </form>
+                    <form action="/auth/signin" method="get">
+                        <button class="button" type="submit" name="dislike" value="Dislike"><i
+                                class="ri-thumb-down-line"></i></button>
+                        {{.Post.Dislikes}}
+                    </form>
+                </div>
+                {{end}}
+
+            </div>
+            {{ if .ThatUser.Username }}
+            <div>
+                <form style="width: 280px;" action="/post/?id={{.Post.Id}}" method="post">
+                    <input style="width:150px" class="form_auth_input" type="text" name="comment"
+                        placeholder="Comment..." maxlength="120" autocomplete="off">
+                    <button style="font-size:12px;" class="btn_comment" type="submit">COMMENT</button>
+                </form>
+            </div>
+            {{else }}
+            <form style="width: 280px;" action="/auth/signin" method="get">
+                <input style="width:150px" class="form_auth_input" type="text" name="comment" placeholder="Comment..."
+                    maxlength="120" autocomplete="off">
+                <button style="font-size:12px;" class="btn_comment" type="submit">SIGN IN</button>
+
+            </form>
+            {{end}}
+
+            {{ if .ThatUser.Username }}
+
+            {{ $all:=.Post }}
+
+            {{range .Comments}}
+
+
+            <div class="comment_container">
+                <span class="post_comment_creator">{{.Creator}}</span>
+                <p class="post_omment_text">{{.Text}}</p>
+                <div style="display: flex;width: 140px;margin-left: auto;">
+                    <form action="/comment/like/?id={{$all.Id}}&id_comment={{.Id}}" method="post">
+                        <button class="button" type="submit" name="like" value="Like"><i
+                                class="ri-thumb-up-line"></i></button>
+                        {{.Likes}}
+                    </form>
+                    <form action="/comment/dislike/?id={{$all.Id}}&id_comment={{.Id}}" method="post">
+                        <button class="button" type="submit" name="dislike" value="Dislike"><i
+                                class="ri-thumb-down-line"></i></button>
+                        {{.Dislikes}}
+                    </form>
+                </div>
+            </div>
+            {{end}}
+
+            {{else}}
+            
+            {{ $all:=.Post }}
+
+            {{range .Comments}}
+
+
+            <div class="comment_container">
+                <span class="post_comment_creator">{{.Creator}}</span>
+                <p class="post_omment_text">{{.Text}}</p>
+                <div style="display: flex;width: 140px;margin-left: auto;">
+                    <form action="/auth/signin" method="get">
+                        <button class="button" type="submit" name="like" value="Like"><i
+                                class="ri-thumb-up-line"></i></button>
+                        {{.Likes}}
+                    </form>
+                    <form action="/auth/signin" method="get">
+                        <button class="button" type="submit" name="dislike" value="Dislike"><i
+                                class="ri-thumb-down-line"></i></button>
+                        {{.Dislikes}}
+                    </form>
+                </div>
+            </div>
+            {{end}}
+
+
+            {{end}}
+
+        </div>
+
+
+        <footer>
+
+            FORUM by <b><a href="https://01.alem.school/git/Abdolla">Abdolla</a></b> and<b><a href="https://01.alem.school/git/Bagdaulet02">Bagdaulet02</a></b>
+                and
+                
+                <b><a href="https://01.alem.school/git/qaharman11">qaharman11</a></b>
+            
+        
+        </footer>
+    </div>
+
+</body>
+
+</html>

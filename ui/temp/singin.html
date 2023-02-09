@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="/ui/static/signin.css" rel="stylesheet" type="text/css">
+    
+    
+
+<body class="content-in">
+
+    <div>
+
+        <div class="center" >
+            <h1>LOGIN</h1>
+            
+            <form class ="login_form" action="/auth/signin" method="post">
+                <div class="txt_field">
+                    <input type="text" name="username" required>
+                    <span></span>
+                    <label>Username</label>
+                </div>
+                <div class="txt_field">
+                    <input type="password" name="password" required>
+                    <span></span>
+                    <label>Password</label>
+                </div>
+                <input class="login100-form-btn" type="submit" value="Sign in">
+                <div class="signup_link">
+                    Not a member? <a href="/auth/signup">Sign up</a>
+                </div>
+                <div class="signup_link">
+                    Back to welcome page <a href="/">Welcome</a>
+                </div>
+                
+            </form>
+
+        <footer>
+
+       
+
+        </footer>
+    </div>
+
+</body>
+
+</html>

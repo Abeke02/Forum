@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+    <link href="/ui/static/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="main-container">
+        <header>
+            <div class="header_text">
+                <a href="/">
+                    FORUM
+                </a>
+            </div>
+
+            {{ if .ThatUser.Username }}
+            <div class="header_text1">
+                {{.ThatUser.Username }}
+                <a  class="header_part" href="/post/create"><i class="fa fa-plus"></i></a>
+                <a class="header_part" href="/profile/{{.ThatUser.Username }}"><i class="fas fa-user-alt"></i></a>
+                <a class="header_part" href="/auth/logout"> <i class="fa fa-sign-out-alt"></i></a>
+            </div>
+
+            {{ else }}
+            <div class="header_text1">
+                <a class="header_part" href="/auth/signin"><i class="ri-login-box-line"></i></a>
+                <br>
+                <a class="header_part" href="/auth/signup"><i class="ri-user-add-line"></i></a>
+            </div>
+
+            {{ end }}
+        </header>
+
+        <div class="main-content">
+            <h2>Categories:</h2>
+            <div class="all-categories">
+                {{$all:=.Posts}}
+                {{range .Categories}}
+                <div class="category">
+                    <span class="tags">{{.}}</span>
+                    {{$category:=.}}
+                    {{range $all}}
+                    {{$ok:=false}}
+
+                    {{range .Category}}
+
+
+                    {{if eq . $category}}
+
+                    {{$ok = true}}
+
+                    {{end}}
+
+                    {{end}}
+
+                    {{if $ok}}
+
+                    <div class="filtered-post">
+                        <a class="post__title" href="/post/?id={{.Id}}">{{.Title}}</a>
+                        <br>
+                        {{.Description}}
+                        <br>
+                        <a href="/profile/{{.Creator}}">By {{.Creator}}</a>
+                    </div>
+                    {{end}}
+
+                    {{end}}
+                </div>
+                {{end}}
+            </div>
+
+        </div>
+</body>
+</html>

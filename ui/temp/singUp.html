@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="/ui/static/signin.css" rel="stylesheet" type="text/css">
+</head>
+
+
+
+<body class="content-in">
+    <div>
+        <div class="center" >
+            <h1>LOGIN</h1>
+            <form class ="login_form" action="/auth/signup" method="post">
+                <div class="txt_field">
+                    <input type="email" name="email" required maxlength="254"
+                    autocapitalize="off" spellcheck="false" autocorrect="off" pattern="(?![_.-])((?![_.-][_.-])[a-zA-Z\d_.-]){0,63}[a-zA-Z\d]@((?!-)((?!--)[a-zA-Z\d-]){0,63}[a-zA-Z\d]\.){1,2}([a-zA-Z]{2,14}\.)?[a-zA-Z]{2,14}">
+                    
+                    <span></span>
+                    <label >E-mail</label> 
+                </div>
+                <div class="txt_field">
+                    <input type="text" name="username" title="Username must be between 6 to 20 characters long" required pattern="[A-Za-z0-9\-_\.]{6,20}" >
+                    <span></span>
+                    <label>Username</label>
+                </div>
+                <div class="txt_field">
+                    <input type="password" name="password"  title ="At least 1 Uppercase
+                    At least 1 Lowercase
+                    At least 1 Number
+                    At least 1 Symbol, symbol allowed --> !@#$%^&*_=+-
+                    Min 8 chars" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,120}$">
+                    <span></span>
+                    <label>Password</label>
+                </div>
+                <div class="txt_field">
+                    <input type="password" name="verifyPassword">
+                    <span></span>
+                    <label>Repeat password</label>
+                </div>
+                <br><br>
+                <input class="login100-form-btn" type="submit" value="REGISTER">
+                <div class="signup_link">
+                    You a member? <a href="/auth/signin">Sign in</a>
+                </div>
+                <div class="signup_link">
+                    Back to welcome page <a href="/">Welcome</a>
+                </div>
+            </form>
+    </div>
+
+</body>
+</html>

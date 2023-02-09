@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <link href="/ui/static/style.css   " rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
+</head>
+
+
+<body>
+    <div class="main-container">
+        <header>
+            <div class="header_text">
+                <a href="/">
+                    FORUM
+                </a>
+            </div>
+
+            {{ if .ThatUser.Username }}
+           
+            <div class="header_text1">
+                {{.ThatUser.Username }}
+                <a class="header_part" href="/post/create"><i class="fa fa-plus"></i></a>
+                <a class="header_part" href="/profile/{{.ThatUser.Username }}"><i class="fas fa-user-alt"></i></a>
+                <a class="header_part" href="/auth/logout"> <i class="fa fa-sign-out-alt"></i></a>
+            </div>
+
+            {{ else }}
+            <div class="header_text1">
+                <a class="header_part" href="/auth/signin"> Sign in</a>
+                <br>
+                <a class="header_part" href="/auth/signup">Sign up</a>
+            </div>
+
+            {{ end }}
+        </header>
+
+        <div class="main-content">
+
+            <form class="filter">
+                <a href="/post/categories">All Categories</a>
+                <input type="submit" name="filter" id="btn" value="More Liked">
+                <input type="submit" name="filter" id="btn" value="Newest">
+                <input type="submit" name="filter" id="btn" value="More Disliked">
+            </form>
+
+            <div class="posts">
+
+                {{range .Posts}}
+                <div class="post">
+                    <a class="post__title" href="/post/?id={{.Id}}">{{.Title}}</a>
+                    <a class="post__description">{{.Description}}</h3>
+                        <a href="/profile/{{.Creator}}">by {{.Creator}}</a>
+                        <ul>
+                            {{range .Category}}
+                            <li class="tags">{{.}}</li>
+                            {{end}}
+                        </ul>
+                </div>
+                {{end}}
+
+            </div>
+
+
+        </div>
+
+        <footer>            
+                FORUM by <a href="https://01.alem.school/git/Abdolla"> Abdolla</a>
+                and <a href="https://01.alem.school/git/Bagdaulet02"> Bagdaulet02</a>
+                and <a href="https://01.alem.school/git/qaharman11"> qaharman11</a>      
+    
+        </footer>
+
+</body>
+</html>
