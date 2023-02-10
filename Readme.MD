@@ -60,8 +60,8 @@ For the forum project you must use Docker. You can read about docker basics in t
 1. Be in the <b>FORUM</b> folder.
 
 2. Enter the command:
-
-        make run
+        
+        make build && make run
 
 3. Wait for the end of the process.
 
@@ -73,7 +73,7 @@ For the forum project you must use Docker. You can read about docker basics in t
 
 
 
-<div align="center"> FORUM by <a href="https://01.alem.school/git/Abdolla"> Abdolla</a>
-                and <a href="https://01.alem.school/git/Bagdaulet02"> Bagdaulet02</a>
-                and <a href="https://01.alem.school/git/qaharman11"> qaharman11</a>  </div>
+<div align="center"> FORUM by <a href="https://github.com/Abeke02"> Abdolla</a>
+                and <a> Bagdaulet02</a>
+                and <a> qaharman11</a>  </div>
 
