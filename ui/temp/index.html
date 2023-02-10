@@ -55,12 +55,14 @@
                 <div class="post">
                     <a class="post__title" href="/post/?id={{.Id}}">{{.Title}}</a>
                     <a class="post__description">{{.Description}}</h3>
-                        <a href="/profile/{{.Creator}}">by {{.Creator}}</a>
-                        <ul>
-                            {{range .Category}}
-                            <li class="tags">{{.}}</li>
-                            {{end}}
-                        </ul>
+                    <a href="/profile/{{.Creator}}">by {{.Creator}}</a>
+                    <ul>
+                        {{range .Category}}
+                        <li class="tags" >
+                            <a href="/post/category/?cat={{.}}">{{.}}</a>
+                        </li>
+                        {{end}}
+                    </ul>
                 </div>
                 {{end}}
 

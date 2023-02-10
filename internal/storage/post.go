@@ -19,6 +19,7 @@ type Post interface {
 	GetCategoriesById(id int) ([]string, error)
 	GetUserByToken(token string) (models.User, error)
 	GetIDPostsByUsername(username string) ([]models.Reaction, error)
+	GetIdPostsByCategory(cat string) ([]int, error)
 }
 
 type PostStorage struct {
@@ -106,6 +107,23 @@ func (p *PostStorage) GetPostById(id int) (models.Post, error) {
 		return models.Post{}, fmt.Errorf("storage: get post by id: %w", err)
 	}
 	return post, nil
+}
+
+func (p *PostStorage) GetIdPostsByCategory(cat string) ([]int, error) {
+	idPosts := []int{}
+	query := `SELECT id_post FROM categories WHERE tag=$1;`
+	row, err := p.db.Query(query, cat)
+	if err != nil {
+		return nil, fmt.Errorf("storage: delete post: %w", err)
+	}
+	for row.Next() {
+		var idPost int
+		if err := row.Scan(&idPost); err != nil {
+			return nil, fmt.Errorf("storage: get Id post by category: %w", err)
+		}
+		idPosts = append(idPosts, idPost)
+	}
+	return idPosts, nil
 }
 
 func (p *PostStorage) GetCategoriesById(id int) ([]string, error) {

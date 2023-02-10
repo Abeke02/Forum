@@ -19,6 +19,7 @@ type Post interface {
 	GetAllCategories() ([]string, error)
 	UpdateCountsReactions(object string, likes int, dislikes int, postId int) error
 	GetIDPostsByUsername(username string) ([]models.Reaction, error)
+	GetIdPostsByCategory(cat string) ([]int, error)
 }
 
 type PostService struct {
@@ -47,6 +48,10 @@ func (p *PostService) GetPostById(id int) (models.Post, error) {
 	}
 
 	return post, nil
+}
+
+func (p *PostService) GetIdPostsByCategory(cat string) ([]int, error) {
+	return p.storage.GetIdPostsByCategory(cat)
 }
 
 func (p *PostService) GetAllPosts(filter string) ([]models.Post, error) {

@@ -211,6 +211,9 @@ func (h *Handler) filterPostCategories(w http.ResponseWriter, r *http.Request) {
 		h.errorPage(w, r, http.StatusInternalServerError, err.Error())
 		return
 	}
+
+	h.Services.GetIdPostsByCategory("aisdufh")
+
 	info := models.Info{
 		Categories: categories,
 		Posts:      posts,

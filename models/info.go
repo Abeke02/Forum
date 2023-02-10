@@ -8,4 +8,5 @@ type Info struct {
 	Post       Post
 	Comments   []Comment
 	Categories []string
+	Category   string
 }
